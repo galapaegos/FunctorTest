@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Fitting">
+      <UniqueIdentifier>{fe8db096-922b-4fff-ad03-285059280279}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fitting\PDFs">
+      <UniqueIdentifier>{8797d795-6fcd-4470-8b7b-40c2d7cb2680}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <CudaCompile Include="MetricTaker.cuh">
+      <Filter>Fitting</Filter>
+    </CudaCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Definitions.h">
+      <Filter>Fitting</Filter>
+    </ClInclude>
+    <ClInclude Include="ParameterContainer.h">
+      <Filter>Fitting</Filter>
+    </ClInclude>
+    <ClInclude Include="FunctorGaussian.h">
+      <Filter>Fitting\PDFs</Filter>
+    </ClInclude>
+    <ClInclude Include="FunctorAdd.h">
+      <Filter>Fitting\PDFs</Filter>
+    </ClInclude>
+    <ClInclude Include="Functor.h">
+      <Filter>Fitting\PDFs</Filter>
+    </ClInclude>
+    <ClInclude Include="FunctorArgus.h">
+      <Filter>Fitting\PDFs</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cu" />
+  </ItemGroup>
+</Project>
