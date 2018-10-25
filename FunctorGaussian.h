@@ -7,7 +7,7 @@
 
 class FunctorGaussian : public Functor {
   public:
-    __host__ __device__ FunctorGaussian(fptype sigma, fptype mean) : m_mean(mean), m_sigma(sigma) {}
+    FunctorGaussian(fptype sigma, fptype mean) : m_mean(mean), m_sigma(sigma) {}
 
     //__device__ fptype operator()(fptype *evt, ParameterContainer &pc
     __device__ fptype operator()(fptype *evt, ParameterContainer &pc) const {
