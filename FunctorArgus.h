@@ -7,7 +7,7 @@
 
 struct FunctorArgus : public Functor {
   public:
-    __device__ FunctorArgus(fptype m0, fptype slope, fptype power) : m_m0(m0), m_slope(slope), m_power(power) {}
+    FunctorArgus(fptype m0, fptype slope, fptype power) : m_m0(m0), m_slope(slope), m_power(power) {}
 
     // This is argus_upper
     __device__ fptype operator()(fptype *evt, ParameterContainer &pc) const {

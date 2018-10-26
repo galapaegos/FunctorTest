@@ -7,7 +7,7 @@
 
 struct FunctorResonanceFlatte : public Functor {
   public:
-    __device__ FunctorResonanceFlatte(fptype g1, fptype rg2og1, fptype cyc) : m_g1(g1), m_rg2og1(rg2og1), m_cyc(cyc) {}
+    FunctorResonanceFlatte(fptype g1, fptype rg2og1, fptype cyc) : m_g1(g1), m_rg2og1(rg2og1), m_cyc(cyc) {}
 
     // This is argus_upper
     __device__ fpcomplex operator()(fptype m12, fptype m13, fptype m23, ParameterContainer &pc) const {
@@ -76,7 +76,7 @@ struct FunctorResonanceFlatte : public Functor {
 
 struct FunctorResonanceGS : public Functor {
   public:
-    __device__ FunctorResonanceGS(fptype sp, fptype cyc) : m_sp(sp), m_cyc(cyc) {}
+    FunctorResonanceGS(fptype sp, fptype cyc) : m_sp(sp), m_cyc(cyc) {}
 
     // This is argus_upper
     __device__ fpcomplex operator()(fptype m12, fptype m13, fptype m23, ParameterContainer &pc) const {

@@ -8,6 +8,7 @@
 template <typename T, typename U> struct FunctorAdd2 : public Functor {
   public:
     FunctorAdd2(T f1, U f2) : functor1(f1), functor2(f2) {}
+
     __device__ fptype operator()(fptype *evt, ParameterContainer &pc) const {
         int numParameters  = pc.getNumParameters();
         fptype ret         = 0;
@@ -166,12 +167,12 @@ template <typename T, typename U, typename V, typename W> struct FunctorAdd4 : p
 };
 
 // These are overloading FunctorAdd so that construction can happen with the same name
-template <typename T, typename U> FunctorAdd2<T, U> FunctorAdd(T t, U u) { return FunctorAdd2(t, u); }
+template <typename T, typename U> FunctorAdd2<T, U> FunctorAdd(T t, U u) { return FunctorAdd2<T, U>(t, u); }
 template <typename T, typename U, typename V> FunctorAdd3<T, U, V> FunctorAdd(T t, U u, V v) {
-    return FunctorAdd3(t, u, v);
+    return FunctorAdd3<T, U, V>(t, u, v);
 }
 template <typename T, typename U, typename V, typename W> FunctorAdd4<T, U, V, W> FunctorAdd(T t, U u, V v, W w) {
-    return FunctorAdd4(t, u, v, w);
+    return FunctorAdd4<T, U, V, W>(t, u, v, w);
 }
 
 // Below is an implementation using if constexpr, but not using variadic templates. I chose to unroll by hand the loop

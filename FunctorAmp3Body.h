@@ -59,7 +59,7 @@ __constant__ fptype c_daug3Mass;
 
 template <typename T> struct FunctorAmp3Body : public Functor {
   public:
-    __device__ FunctorAmp3Body(T f, fptype m0, fptype slope, fptype power) :
+    FunctorAmp3Body(T f, fptype m0, fptype slope, fptype power) :
         m_functor(f), m_m0(m0), m_slope(slope), m_power(power) {}
 
     // This is argus_upper

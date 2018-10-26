@@ -5,6 +5,137 @@
 
 #include <type_traits>
 
+template <typename T> class FunctorProduct1 : public Functor {
+  public:
+    FunctorProduct1(T f1) : functor1(f1) {}
+
+    __device__ fptype operator()(fptype *evt, ParameterContainer &pc) const {
+        int numConstants   = pc.getNumConstants();
+        int numComponents  = pc.getConstant(0);
+        int numObservables = pc.getNumObservables();
+
+        fptype ret = 1;
+
+        // Increment to the next function
+        pc.incrementIndex(1, 0, numConstants, numObservables, 1);
+
+        // Functor1
+        ret *= functor1(evt, pc) * pc.getNormalization(0);
+
+        return ret;
+    }
+
+  protected:
+    T functor1;
+};
+
+template <typename T, typename U> class FunctorProduct2 : public Functor {
+  public:
+    FunctorProduct2(T f1, U f2) : functor1(f1), functor2(f2) {}
+
+    __device__ fptype operator()(fptype *evt, ParameterContainer &pc) const {
+        int numConstants   = pc.getNumConstants();
+        int numComponents  = pc.getConstant(0);
+        int numObservables = pc.getNumObservables();
+
+        fptype ret = 1;
+
+        // Increment to the next function
+        pc.incrementIndex(1, 0, numConstants, numObservables, 1);
+
+        // Functor1
+        ret *= functor1(evt, pc) * pc.getNormalization(0);
+
+        // Functor2
+        ret *= functor2(evt, pc) * pc.getNormalization(0);
+
+        return ret;
+    }
+
+  protected:
+    T functor1;
+    U functor2;
+};
+
+template <typename T, typename U, typename V> class FunctorProduct3 : public Functor {
+  public:
+    FunctorProduct3(T f1, U f2, V f3) : functor1(f1), functor2(f2), functor3(f3) {}
+
+    __device__ fptype operator()(fptype *evt, ParameterContainer &pc) const {
+        int numConstants   = pc.getNumConstants();
+        int numComponents  = pc.getConstant(0);
+        int numObservables = pc.getNumObservables();
+
+        fptype ret = 1;
+
+        // Increment to the next function
+        pc.incrementIndex(1, 0, numConstants, numObservables, 1);
+
+        // Functor1
+        ret *= functor1(evt, pc) * pc.getNormalization(0);
+
+        // Functor2
+        ret *= functor2(evt, pc) * pc.getNormalization(0);
+
+        // Functor3
+        ret *= functor3(evt, pc) * pc.getNormalization(0);
+
+        return ret;
+    }
+
+  protected:
+    T functor1;
+    U functor2;
+    V functor3;
+};
+
+template <typename T, typename U, typename V, typename W> class FunctorProduct4 : public Functor {
+  public:
+    FunctorProduct4(T f1, U f2, V f3, W f4) : functor1(f1), functor2(f2), functor3(f3), functor4(f4) {}
+
+    __device__ fptype operator()(fptype *evt, ParameterContainer &pc) const {
+        int numConstants   = pc.getNumConstants();
+        int numComponents  = pc.getConstant(0);
+        int numObservables = pc.getNumObservables();
+
+        fptype ret = 1;
+
+        // Increment to the next function
+        pc.incrementIndex(1, 0, numConstants, numObservables, 1);
+
+        // Functor1
+        ret *= functor1(evt, pc) * pc.getNormalization(0);
+
+        // Functor2
+        ret *= functor2(evt, pc) * pc.getNormalization(0);
+
+        // Functor3
+        ret *= functor3(evt, pc) * pc.getNormalization(0);
+
+        // Functor4
+        ret *= functor4(evt, pc) * pc.getNormalization(0);
+
+        return ret;
+    }
+
+  protected:
+    T functor1;
+    U functor2;
+    V functor3;
+    W functor4;
+};
+
+template <typename T> FunctorProduct1<T> FunctorProduct(T t) { return FunctorProduct1<T>(t); }
+template <typename T, typename U> FunctorProduct2<T, U> FunctorProduct(T t, U u) { return FunctorProduct2<T, U>(t, u); }
+template <typename T, typename U, typename V> FunctorProduct3<T, U, V> FunctorProduct(T t, U u, V v) {
+    return FunctorProduct3<T, U, V>(t, u, v);
+}
+template <typename T, typename U, typename V, typename W>
+FunctorProduct4<T, U, V, W> FunctorProduct(T t, U u, V v, W w) {
+    return FunctorProduct4<T, U, V, W>(t, u, v, w);
+}
+
+/*
 template <typename T = std::nullptr_t,
           typename U = std::nullptr_t,
           typename V = std::nullptr_t,
@@ -175,3 +306,4 @@ class FunctorProduct : public Functor {
     X functor5;
     Y functor6;
 };
+*/

@@ -10,7 +10,7 @@ __constant__ fptype *dev_resWorkSpace[100];
 
 template <typename T, typename U> class FunctorProduct : public Functor {
   public:
-    __device__ FunctorProduct(T f1, U f2) : functor1(f1), functor2(f2) {}
+    FunctorProduct(T f1, U f2) : functor1(f1), functor2(f2) {}
 
     __device__ fptype operator()(fptype *evt, ParameterContainer &pc) const {
         int id = pc.getObservable(0);

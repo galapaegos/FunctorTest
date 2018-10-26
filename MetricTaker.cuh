@@ -12,12 +12,10 @@
 #include "Definitions.h"
 #include "Functor.h"
 #include "ParameterContainer.h"
-#include "FunctorGaussian.h"
-//#include "FunctorAdd.h"
 
-template <typename T> class MetricTaker : public thrust::unary_function<thrust::tuple<int, fptype *, int>, fptype> {
+template <typename T> class MetricTaker1 : public thrust::unary_function<thrust::tuple<int, fptype *, int>, fptype> {
   public:
-    __device__ MetricTaker(T f) : pdf(f) {}
+    __device__ MetricTaker1(T f) : pdf(f) {}
 
     __device__ fptype operator()(thrust::tuple<int, fptype *, int> t) const {
         ParameterContainer pc;
@@ -33,3 +31,5 @@ template <typename T> class MetricTaker : public thrust::unary_function<thrust::
 
     T pdf;
 };
+
+template <typename T> MetricTaker1<T> MetricTaker(T t) { return MetricTaker1<T>(t); }

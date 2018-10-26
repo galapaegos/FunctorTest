@@ -69,11 +69,11 @@ template <typename T, typename U, typename V, typename W> class FunctorMapped4 :
 };
 
 template <typename T, typename U, typename V> FunctorMapped3<T, U, V> FunctorMapped(T t, U u, V v) {
-    return FunctorMapped3(t, u, v);
+    return FunctorMapped3<T, U, V>(t, u, v);
 }
 
 template <typename T, typename U, typename V, typename W> FunctorMapped4<T, U, V, W> FunctorMapped(T t, U u, V v, W w) {
-    return FunctorMapped4(t, u, v, w);
+    return FunctorMapped4<T, U, V, W>(t, u, v, w);
 }
 
 // Below is an implementation using if constexpr, but not using variadic. This was
