@@ -25,7 +25,10 @@ template <typename T, typename U, typename V> class FunctorMapped3 : public Func
         } else if(targetFunction == 1) {
             pc.incrementIndex();
             ret = functor3(evt, pc) * pc.getNormalization(0);
-        }
+        } else {
+            pc.incrementIndex();
+            pc.incrementIndex();
+	}
 
         return ret;
     }
@@ -53,9 +56,20 @@ template <typename T, typename U, typename V, typename W> class FunctorMapped4 :
         if(targetFunction == 0) {
             ret = functor2(evt, pc) * pc.getNormalization(0);
             pc.incrementIndex();
+            pc.incrementIndex();
         } else if(targetFunction == 1) {
             pc.incrementIndex();
             ret = functor3(evt, pc) * pc.getNormalization(0);
+            pc.incrementIndex();
+        } else if(targetFunction == 2) {
+            pc.incrementIndex();
+            pc.incrementIndex();
+            ret = functor4(evt, pc) * pc.getNormalization(0);
+        }
+        else {
+            pc.incrementIndex();
+            pc.incrementIndex();
+            pc.incrementIndex();
         }
 
         return ret;
